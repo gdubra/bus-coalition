@@ -1,0 +1,3 @@
+bus_coalition_web_homepage:
+    path:     /
+    defaults: { _controller: BusCoalitionWebBundle:Default:index }

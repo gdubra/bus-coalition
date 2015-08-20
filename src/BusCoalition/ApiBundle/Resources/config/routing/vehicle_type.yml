@@ -1,0 +1,3 @@
+fleet_bootstrap:
+    pattern:  /bootstrap
+    defaults: { _controller: "BusCoalitionApiBundle:VehicleType:bootstrap" }

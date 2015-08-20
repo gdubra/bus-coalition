@@ -1,0 +1,3 @@
+fund_source_bootstrap:
+    pattern:  /bootstrap
+    defaults: { _controller: "BusCoalitionApiBundle:FundSource:bootstrap" }

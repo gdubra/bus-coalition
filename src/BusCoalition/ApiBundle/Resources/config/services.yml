@@ -1,0 +1,8 @@
+services:
+    api_ajax_url_manager:
+        class:        BusCoalition\ApiBundle\Service\AjaxUrlManager
+        arguments: 
+            router: "@router"
+            csrf_provider: "@form.csrf_provider"
+        tags:
+            - { name: templating.helper, alias: ajax_url_manager }

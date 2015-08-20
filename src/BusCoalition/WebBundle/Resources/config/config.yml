@@ -1,0 +1,3 @@
+twig:
+    globals:
+        api_url_manager: "@api_ajax_url_manager"

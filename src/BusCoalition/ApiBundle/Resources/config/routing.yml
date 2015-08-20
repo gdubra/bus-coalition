@@ -1,0 +1,11 @@
+funding:
+    resource: "@BusCoalitionApiBundle/Resources/config/routing/fund_source.yml"
+    prefix:   /fund-source
+    
+fleet:
+    resource: "@BusCoalitionApiBundle/Resources/config/routing/vehicle_type.yml"
+    prefix:   /vehicle-type
+    
+form_bootstrap:
+    pattern:  /form-bootstrap
+    defaults: { _controller: "BusCoalitionApiBundle:Default:form_bootstrap" }

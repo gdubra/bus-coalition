@@ -1,0 +1,30 @@
+<div data-ng-controller="fleetCtrl">
+    <h2>Fleet Cost</h2>
+    <div class="row">
+        <p>
+            In this section we'll look at the potential capital needed to replace portions of your fleet as they reach their useful life.  
+        </p>
+        <p>
+            Click Add next to each vehicle that you currently have in your fleet and fill in the form that opens. You can also add additional vehicle types by clicking next to Add Another Vehicle Type
+        </p>
+    </div>
+    <div class="row">
+        <h3>Vehicle Types</h3>
+        <div class="row" data-ng-repeat="vehicle in company.fleet">
+            <div class="col-xs-8">{{vehicle.name}}<span data-ng-show="vehicle.replacements" class="glyphicon glyphicon-ok"></span></div>
+            <div class="col-xs-4"><button type="button" class="btn" data-ng-class="vehicle.replacements? 'btn-default': 'btn-success'" data-ng-click="addEditVehicle(vehicle)">{{fundSource.donations? 'Edit' : 'Add'}}</button></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">Add another vehicle type</div>
+            <div class="col-xs-4"><button type="button" class="btn btn-success" data-ng-click="addVehicleType()">Add</button></div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Review your yearly inflation rate:</h3>
+        <div class="col-xs-12">We've gone ahead and entered the estimated yearly inflation rate for your area. Feel free to edit it if needed</div>
+        <div class="col-xs-12 col-sm-10 col-md-6 center-block"><label>Vehicle Cost Year Inflation:</label><input type="text" data-ng-model="company.fleetInflationRate"/>%</div>
+    </div>
+    <button type="button" class="btn btn-default" data-ng-click="back()">Back</button>
+    <button type="button" class="btn btn-default" data-ng-click="next()">Next</button>
+</div>
+

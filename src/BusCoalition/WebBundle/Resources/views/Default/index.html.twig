@@ -1,0 +1,49 @@
+<!doctype html>
+<html data-ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Bus Coalition{% endblock %}</title>
+        <base href="{{ app.request.getBaseURL() }}/">
+        <script type="text/javascript">var ajax_urls = JSON.parse({{ api_url_manager.get_ajax_urls()|json_encode|raw}});</script>
+        {% block javascripts %}
+            {% javascripts 
+                '@BusCoalitionWebBundle/Resources/public/vendor/angular/angular.js'
+                '@BusCoalitionWebBundle/Resources/public/vendor/angular-bootstrap/ui-bootstrap.js'
+                '@BusCoalitionWebBundle/Resources/public/vendor/angular-bootstrap/ui-bootstrap-tpls.js'
+                '@BusCoalitionWebBundle/Resources/public/vendor/angular-ui-router/release/angular-ui-router.js'
+                '@BusCoalitionWebBundle/Resources/public/js/app.js'
+                '@BusCoalitionWebBundle/Resources/public/js/app-factories.js'
+                '@BusCoalitionWebBundle/Resources/public/js/app-filters.js'
+                '@BusCoalitionWebBundle/Resources/public/js/routing/*.js'
+                '@BusCoalitionWebBundle/Resources/public/js/controller/*-ctrl.js'
+                output='js/compiled/main.js' 
+            %}
+                <script src="{{asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+        {% block stylesheets %}
+            {% stylesheets 
+                '@BusCoalitionWebBundle/Resources/public/css/*.css'
+                '@BusCoalitionWebBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.css'
+                '@BusCoalitionWebBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap-theme.css'
+                filter='cssrewrite'  
+            %}
+                <link rel="stylesheet" href="{{asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        
+    </head>
+
+    <body data-role="document">
+        <div  data-ng-controller="AlertsCtrl" ng-cloak >
+            <alert data-ng-repeat="alert in alerts" class="global-alert" type="{% verbatim %}{{alert.type}}{% endverbatim %}" close="close($index)">
+                <span ng-if="alert.type=='danger'" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span ng-if="alert.type=='warning'" class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                <span ng-if="alert.type=='success'" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {% verbatim %}{{alert.msg}}{% endverbatim %}
+            </alert>
+        </div>
+        <main class="container" data-ui-view="container">
+        </main>
+    </body>
+</html>

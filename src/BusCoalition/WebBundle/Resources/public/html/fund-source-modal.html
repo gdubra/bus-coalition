@@ -1,0 +1,35 @@
+<div class="row">
+<form ng-submit="submit()" role="form" method="post" class="col-xs-12">
+<div class="modal-body">
+    <h3>Add Funding Details</h3>
+    <h3>{{selectedFundSource.name}}</h3>
+    Enter the total amount of funds your agency recieved for each funding year.
+    <div class="row">
+        <label>important:</label>
+        <ul>
+            <li>Show de federal portion.</li>
+            <li>Do not include local match.</li>
+            <li>The funding year is federal budget year that Congress appropiated (awarded) the funds to you. For example, if Congress appropriated $5,000,000 of "FY2014" funds during the 2014</li>
+        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="year in (selectedFundSource | fundSourceLifetime)">
+                    <td>{{year}}</td>
+                    <td><input type="text" data-ng-model="selectedFundSource.donations[year]" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer col-xs-12">
+    <button type="submit" class="btn btn-primary" data-ng-disabled="form.$invalid" >Submit</button>
+    <button type="button" class="btn btn-default" data-ng-click="cancel()" >Cancel</button>
+</div>
+</form>
+</div>

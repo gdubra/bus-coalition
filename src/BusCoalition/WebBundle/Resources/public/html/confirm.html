@@ -1,0 +1,26 @@
+<div data-ng-controller="confirmCtrl">
+    <h1>Review Your Inputs</h1>
+    You're almost done! Take a minute to review your inputs. If you need to edit anything you can use the navigation bar to return to a previous section. When you're ready, submit the form to generate your report!
+    <h2>Funding Data</h2>
+    <h3>Funds Received</h3>
+    <div class="row" data-ng-repeat="fundSource in (company.fundSources|activeFundSource)">
+        <p>{{fundSource.name}}</p>
+        <p data-ng-repeat="(year,amount) in fundSource.donations">
+            {{year}}:${{amount}}
+        </p>
+    </div>
+    
+    <h2>Fleet Data</h2>
+    <div class="row" data-ng-repeat="vehicle in (company.fleet|activeFleet)">
+        <p>{{vehicle.name}}</p>
+        <p><label>Current value: </label>${{vehicle.price}}</p>
+        <p><label>Number in fleet: </label>{{vehicle.amount}}</p>
+        <p><label>Reaching useful life:</label></p>
+        <p data-ng-repeat="(year,amount) in vehicle.replacements">
+            {{year}}:{{amount}}
+        </p>
+    </div>
+    <button type="button" class="btn btn-default" data-ng-click="back()">Back</button>
+    <button type="button" class="btn btn-default" data-ng-click="next()">Next</button>
+</div>
+

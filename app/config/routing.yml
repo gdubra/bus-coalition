@@ -1,0 +1,7 @@
+bus_coalition_web:
+    resource: "@BusCoalitionWebBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bus_coalition_api:
+    resource: "@BusCoalitionApiBundle/Resources/config/routing.yml"
+    prefix:   /api
