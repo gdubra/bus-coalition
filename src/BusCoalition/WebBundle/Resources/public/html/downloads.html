@@ -1,0 +1,13 @@
+<div data-ng-controller="downloadsCtrl">
+<h1 class="text-center">Thank you! Your report has been generated.</h1>
+<h2 class="text-center">You can download your Community Report and input spreadsheet below. You'll receive an email with a link to this page, where you can access the downloads at any time.</h2>
+<div class="row">
+    <div class="center-block col-xs-12 col-sm-9 col-md-8 text-center">
+        <a data-ng-href="{{company.report_link}}" class="bus-btn  btn-nav btn-next mg-top-15" data-ng-click="next()">Download Report <i class="fa fa-download"></i></a>
+        <a data-ng-href="{{company.input_link}}" class="bus-btn  btn-nav btn-next mg-top-15" data-ng-click="downloadInputs()">Download Spreadsheet <i class="fa fa-download"></i></a>
+    </div>
+    <div class="center-block col-xs-12 col-sm-9 col-md-8 text-center">
+        <button type="button" class="bus-btn  btn-nav btn-back mg-top-15" data-ng-click="back()"><i class="fa fa-angle-left"></i> Back to The Bus Coalition</button>
+    </div>
+</div>
+</div>

@@ -6,3 +6,8 @@ services:
             csrf_provider: "@form.csrf_provider"
         tags:
             - { name: templating.helper, alias: ajax_url_manager }
+            
+    report_service:
+            class:        BusCoalition\ApiBundle\Service\ReportService
+            arguments:    [@phpexcel,@doctrine.orm.entity_manager]
+

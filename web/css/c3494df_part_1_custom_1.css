@@ -1,3 +1,17 @@
+/*CUSTOMS*/
+.no-padding{
+	padding: 0 !important;
+}
+
+.no-margin{
+	margin: 0 !important;
+}
+
+h1{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 29px;
+	color: #444444; 
+}
 /*forms alerts*/
 .global-alert {
   position: fixed;
@@ -19,3 +33,113 @@ form .error{
     color:#a94442;
     margin-top: 5px;
 }
+
+/*BREADCRUM*/
+.logo{
+    background: url("../../Resources/public/css/bundles/buscoalitionweb/images/logo.png");
+}
+
+.my-breadcrumb { 
+    list-style: none; 
+    overflow: hidden; 
+    font: 18px Helvetica, Arial, Sans-Serif;
+}
+.my-breadcrumb li { 
+    float: left; 
+    list-style: outside none none;
+}
+
+.my-breadcrumb li a.active{
+	color:#fff;
+}
+
+.my-breadcrumb li a {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	color: #90909a;
+	font-size: 15px;
+    text-decoration: none; 
+    background: brown;                   /* fallback color */
+    background: #2f2f41; 
+    position: relative; 
+    display: block;
+    float: left;
+    height: 98px;
+    line-height: 98px;  
+    padding: 0 0 0 30px; 
+    text-align: center; 
+}
+@media screen and (min-width: 990px) {
+	.my-breadcrumb li:not(:last-child) a:after { 
+	    content: " "; 
+	    display: block; 
+	    width: 0; 
+	    height: 0;
+	    border-top: 49px solid transparent;           /* Go big on the size, and let overflow hide */
+	    border-bottom: 49px solid transparent;
+	    border-left: 30px solid #2f2f41;
+	    position: absolute;
+	    top: 50%;
+	    margin-top: -49px; 
+	    left: 100%;
+	    z-index: 2; 
+	}
+
+	.my-breadcrumb li:not(:last-child) a:before { 
+	    content: " "; 
+	    display: block; 
+	    width: 0; 
+	    height: 0;
+	    border-top: 49px solid transparent;       
+	    border-bottom: 49px solid transparent;
+	    border-left: 30px solid #6b6b77;
+	    position: absolute;
+	    top: 50%;
+	    margin-top: -49px; 
+	    margin-left: 1px;
+	    left: 100%;
+	    z-index: 1; 
+	}	
+}
+@media screen and (max-width: 990px) {
+.my-breadcrumb li:not(:last-child):not(:first-child) a:after { 
+    content: " "; 
+    display: block; 
+    width: 0; 
+    height: 0;
+    border-top: 49px solid transparent;           /* Go big on the size, and let overflow hide */
+    border-bottom: 49px solid transparent;
+    border-left: 30px solid #2f2f41;
+    position: absolute;
+    top: 50%;
+    margin-top: -49px; 
+    left: 100%;
+    z-index: 2; 
+}
+
+.my-breadcrumb li:not(:last-child):not(:first-child) a:before { 
+    content: " "; 
+    display: block; 
+    width: 0; 
+    height: 0;
+    border-top: 49px solid transparent;       
+    border-bottom: 49px solid transparent;
+    border-left: 30px solid #6b6b77;
+    position: absolute;
+    top: 50%;
+    margin-top: -49px; 
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1; 
+}
+}
+
+.my-breadcrumb li:first-child a{ 
+    background: #ffffff; 
+}
+.my-breadcrumb li:first-child a:after {
+    border-left: 30px solid #fff;
+}
+
+
+

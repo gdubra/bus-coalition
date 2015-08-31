@@ -52,13 +52,13 @@ myApp.config(function($stateProvider, $urlRouterProvider, $urlMatcherFactoryProv
         }
     });
     
-    $stateProvider.state('report', {
-        url: "/report",
+    $stateProvider.state('downloads', {
+        url: "/downloads",
         isEditing: false,
         views: {
             'container@': {
-                templateUrl: "/bundles/buscoalitionweb/html/report.html",
-                controller: "reportCtrl"
+                templateUrl: "/bundles/buscoalitionweb/html/downloads.html",
+                controller: "downloadsCtrl"
             }
         }
     });

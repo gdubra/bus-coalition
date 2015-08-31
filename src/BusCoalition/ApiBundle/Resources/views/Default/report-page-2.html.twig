@@ -1,0 +1,81 @@
+{% extends 'BusCoalitionApiBundle:Default:report-page.html.twig' %}
+{% block body %}
+<script type="text/javascript">
+    var chart2Data = JSON.parse('{{ chart2|json_encode|raw}}');
+    $(function () {
+        renderChart2('#chart2',chart2Data);
+    });
+    
+    function renderChart2(id,chartdata){
+        $(id).highcharts({
+            colors:['#c4c4c4','#e8c35d'],
+            legend: {enabled:false},
+            chart: {
+                type: 'column'
+            },
+            exporting: { enabled: false },
+            title:{text:''},
+            xAxis: {
+                categories: chartdata.categories,
+                crosshair: false,
+                title:''
+            },
+            yAxis:{
+                min:0,
+                title:''
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 1
+                },
+                animation: false
+            },
+            series: chartdata.series,
+        });
+    }
+</script>
+
+<div class="row padding">
+    <div class="section-title col-xs-12">
+        <div class="yellow-icon-container"><span class="section-title-yellow-icon"><i class="fa fa-calculator"></i></span></div>
+        Comparision of Sec.5309 and Sec.5339 Bus & Bus Facilities Accounts
+    </div>
+</div>
+<div class="row padding">
+    <div class="comparision-section-text">
+        <p class="no-padding">
+            It is important to understand the cost of replacing our aging fleet, which is dependent on federal bus and bus facilities funding and to compare it to the funding we are receiving for those purposes. As you can see in this chart, the cost of replacing our aging buses far exceeds the funding that is provided through the current authorization, MAP-21, as well as what we will receive under the Senate’s authorization bill, the DRIVE act.  
+        </p>
+    </div>
+</div>
+<div class="row padding">
+         <div class="col-xs-12 text-center chart2 chart-title">
+            <div class="col-xs-6 labels-container no-padding center-block" >
+                <div class="col-xs-6 no-padding old-sec text-center">
+                    Sec. 5339 Bus <br>
+                    &amp; Bus Facilities 
+                </div>
+                <div class="col-xs-6 no-padding new-sec text-center">
+                    Expected <br>
+                    Expenditures
+                </div>
+            </div>
+            <div class="vs-icon-container col-xs-12"><span class="vs-round-icon">vs</span></div>
+        </div>
+        
+</div>
+<div class="row padding">
+    <div id="chart2" style="margin: 0 auto"></div>
+</div>
+<div class="row comparision-section-text padding">
+    <p>
+        As stated previously, portions of our fleet reach replacement status in batches. Under current law, many agencies can only replace a fraction of one vehicle using their apportionment of Sec.5339 Bus & Bus Facilities formula funds.
+    </p>
+    <p>
+        At {{data.basic_info.name}}, we currently have {{data.totals.vehicles}} in our fleet. Between the years {{year}}-{{year+6}}, we anticipate {{data.totals.replacements}} vehicles will reach their FTA determined useful life and will need replacing at a cost of ${{data.totals.cost}}. During that same time period, we expect to receive ${{data.totals.donations}} from the Sec.5339 Bus & Bus Facilities formula program.
+    </p> 
+</div>
+
+
+{% endblock %}

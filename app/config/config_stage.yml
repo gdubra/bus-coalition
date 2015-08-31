@@ -1,0 +1,8 @@
+imports:
+    - { resource: config.yml }
+doctrine:
+    dbal:
+        host:     localhost
+        dbname:   bus_coalition
+        user:     apache
+        password: ULin2010

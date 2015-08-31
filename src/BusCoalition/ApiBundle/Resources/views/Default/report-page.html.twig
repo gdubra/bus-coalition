@@ -1,0 +1,28 @@
+<div class="page">
+    <div class="row header">
+        <span class="cname col-xs-2">
+            {{data.basic_info.name}}
+        </span>
+        <span class="caddress col-xs-2">
+            {{data.basic_info.address}}
+        </span>
+        <span class="cemail col-xs-2">
+            {{data.basic_info.contact_phone}} {{data.basic_info.contact_email}}
+        </span>
+        <span class="col-xs-6">
+        <img class="pull-right logo" src="{{ app.request.getSchemeAndHttpHost()  }}/bundles/buscoalitionapi/images/logo.png"/>
+        </span>
+    </div>
+    <div class="page-content">
+        {% block body %}{% endblock %}
+    </div>
+    <div class="footer padding">
+        <div class="note">This report was generated & created by The Bus Coalition® for use by <span class="cname">{{data.basic_info.name}}</span></div>
+        <span class="contact">The Bus Coalition®</span>
+        <div class="contact point">.</div>
+        <span class="contact">info@buscoalition.com</span>
+        <div class="contact point">.</div>
+        <span class="contact">www.buscoalition.com</span>
+        <span class="pdf-pagination pull-right">{{page}} of 3</span>
+    </div>
+</div>

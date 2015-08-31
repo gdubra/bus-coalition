@@ -39,6 +39,7 @@ myAppControllers.controller('fleetCtrl',['$scope','$state','$modal','$ajaxHelper
             vehicle.replacements = selectedVehicle.replacements;
             vehicle.price = selectedVehicle.price;
             vehicle.amount = selectedVehicle.amount;
+            sessionStorage.setObject('company',$scope.company);
           });
     };
     

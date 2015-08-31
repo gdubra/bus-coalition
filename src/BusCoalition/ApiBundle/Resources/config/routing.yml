@@ -9,3 +9,20 @@ fleet:
 form_bootstrap:
     pattern:  /form-bootstrap
     defaults: { _controller: "BusCoalitionApiBundle:Default:form_bootstrap" }
+
+report_bootstrap:
+    pattern:  /report-bootstrap
+    defaults: { _controller: "BusCoalitionApiBundle:Default:report_bootstrap" }
+
+    
+download_input:
+    pattern:  /download-input/{filename}
+    defaults: { _controller: "BusCoalitionApiBundle:Default:download_input" }
+
+download_report:
+    pattern:  /download-report/{filename}
+    defaults: { _controller: "BusCoalitionApiBundle:Default:download_report" }
+    
+confirm:
+    pattern:  /confirm
+    defaults: { _controller: "BusCoalitionApiBundle:Default:confirm" }

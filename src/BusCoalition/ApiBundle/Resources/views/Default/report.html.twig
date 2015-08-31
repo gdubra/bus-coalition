@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Bus Coalition{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700italic,400italic,700|Merriweather:400,400italic,700,700italic|Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="{{ app.request.getSchemeAndHttpHost()  }}/bundles/buscoalitionapi/vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="{{ app.request.getSchemeAndHttpHost()  }}//bundles/buscoalitionapi/vendor/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+        <link href="{{ app.request.getSchemeAndHttpHost()  }}//bundles/buscoalitionapi/css/report.css" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+        
+    </head>
+
+    <body>
+            {{ include('BusCoalitionApiBundle:Default:report-page-1.html.twig', { 'page': 1, 'data': data, 'chart1': chart1 }) }}
+            {{ include('BusCoalitionApiBundle:Default:report-page-2.html.twig', { 'page': 2, 'data': data, 'chart2': chart2, 'year':year }) }}
+            {{ include('BusCoalitionApiBundle:Default:report-page-3.html.twig', { 'page': 3, 'data': data, 'chart1': chart3, 'year':year }) }}
+    </body>
+</html>

@@ -1,4 +1,24 @@
 var buscoalitionfn = angular.module('fn.buscoalition',  []);
+buscoalitionfn.factory('$uiHelper',['$rootScope',function($rootScope){
+    return {
+        warning_alert:
+        function(msg){
+           this.alert({typo:'waring',msg:msg});
+        },
+        error_alert:
+        function(msg){
+            this.alert({typo:'danger',msg:msg});
+        },
+        succes_alert:
+        function(msg){
+            this.alert({typo:'success',msg:msg});
+        },
+        alert:
+        function(alert){
+            $rootScope.alerts = [alert];
+        }
+    };
+}]);
 buscoalitionfn.factory('$ajaxHelper', ['$http','$interval','$rootScope', function($http,$interval,$rootScope) {
     return {
         update_model: 

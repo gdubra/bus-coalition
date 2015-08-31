@@ -36,6 +36,7 @@ class AjaxUrlManager extends Helper{
             'FORM_BOOTSTRAP'=>$this->router->generate('form_bootstrap'),
             'FUNDING_BOOTSTRAP'=>$this->router->generate('fund_source_bootstrap'),
             'FLEET_BOOTSTRAP'=>$this->router->generate('fleet_bootstrap'),
+            'CONFIRM'=>$this->router->generate('confirm'),
         );
     }
     

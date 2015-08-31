@@ -1,4 +1,24 @@
 var buscoalitionfn = angular.module('fn.buscoalition',  []);
+buscoalitionfn.factory('$uiHelper',['$rootScope',function($rootScope){
+    return {
+        warning_alert:
+        function(msg){
+           this.alert({typo:'waring',msg:msg});
+        },
+        error_alert:
+        function(msg){
+            this.alert({typo:'danger',msg:msg});
+        },
+        succes_alert:
+        function(msg){
+            this.alert({typo:'success',msg:msg});
+        },
+        alert:
+        function(alert){
+            $rootScope.alerts = [alert];
+        }
+    };
+}]);
 buscoalitionfn.factory('$ajaxHelper', ['$http','$interval','$rootScope', function($http,$interval,$rootScope) {
     return {
         update_model: 
@@ -21,16 +41,20 @@ buscoalitionfn.factory('$ajaxHelper', ['$http','$interval','$rootScope', functio
                     }
                     
                     if(angular.isDefined(retrieved_data.alerts)){
-                        $rootScope.alerts = angular.isArray(retrieved_data.alerts)?retrieved_data.alerts:[retrieved_data.alerts];
+                        if(!angular.isArray(retrieved_data.alerts) && retrieved_data.alerts != null && retrieved_data.alerts != ''){
+                            $rootScope.alerts = [retrieved_data.alerts];
+                        }else if(angular.isArray(retrieved_data.alerts) && retrieved_data.alerts.length > 0 ){
+                            $rootScope.alerts = retrieved_data.alerts;
+                        }
                     }
                     
                     if(retrieved_data.success){
                         if(angular.isDefined(sucess_callback)){
-                            sucess_callback(retrieved_data);
+                            sucess_callback(retrieved_data.data);
                         }
                     }else{
                         if(angular.isDefined(fail_callback)){
-                            fail_callback(retrieved_data);
+                            fail_callback(retrieved_data.data);
                         }else if(!angular.isDefined(retrieved_data.alerts)){//por si no hay otra alerta defindia 
                             $rootScope.alerts=[{type:'danger',msg:' Fatal Error: server is not responding'}];
                         }
@@ -66,7 +90,11 @@ buscoalitionfn.factory('$ajaxHelper', ['$http','$interval','$rootScope', functio
                         
                     
                     if(angular.isDefined(retrieved_data.alerts)){
-                        $rootScope.alerts = angular.isArray(retrieved_data.alerts)?retrieved_data.alerts:[retrieved_data.alerts];
+                        if(!angular.isArray(retrieved_data.alerts) && retrieved_data.alerts != null && retrieved_data.alerts != ''){
+                            $rootScope.alerts = [retrieved_data.alerts];
+                        }else if(angular.isArray(retrieved_data.alerts) && retrieved_data.alerts.length > 0 ){
+                            $rootScope.alerts = retrieved_data.alerts;
+                        }
                     }
                 }))
                 .error(function() {

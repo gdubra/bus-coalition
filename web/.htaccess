@@ -1,3 +1,18 @@
+# Detect the variable telling us to use auth and deny
+SetEnvIf Request_URI ^/reports/$ protected_section
+SetEnvIf Request_URI ^/inputs/$ protected_section
+Deny from env=protected_section
+Satisfy any
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile "C:/Users/gaston/workspace/php/uplifted/bus-coalition/web/busadmin.htpasswd"
+AuthType Basic
+<Limit GET POST PUT>
+require user busadmin
+</Limit>
+
+
+
 # Use the front controller as index file. It serves as a fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without
 # mod_rewrite). Additionally, this reduces the matching process for the
@@ -20,14 +35,20 @@ DirectoryIndex app.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Determine the RewriteBase automatically and set it as environment variable.
+	RewriteCond %{REQUEST_URI} ^/reports/?$
+	RewriteRule .? - [L]
+	
+	RewriteCond %{REQUEST_URI} ^/inputs/?$
+	RewriteRule .? - [L]
+	
+	# Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
     # resolution of the app.php file and to redirect to the correct URI. It will
     # work in environments without path prefix as well, providing a safe, one-size
     # fits all solution. But as you do not need it in this case, you can comment
     # the following 2 lines to eliminate the overhead.
-    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+	RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
     RewriteRule ^(.*) - [E=BASE:%1]
 
     # Sets the HTTP_AUTHORIZATION header removed by apache
@@ -52,9 +73,9 @@ DirectoryIndex app.php
     # We only want to let Apache serve files and not directories.
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule .? - [L]
-
-    # Rewrite all other queries to the front controller.
-    RewriteRule .? %{ENV:BASE}/app.php [L]
+	
+	# Rewrite all other queries to the front controller.
+	RewriteRule .? %{ENV:BASE}/app.php [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>

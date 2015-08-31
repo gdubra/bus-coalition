@@ -1,0 +1,40 @@
+.vm .description{
+	color: #444444;
+	font-family: 'Merriweather Sans';
+	font-size: 17px;
+	font-weight: bold;
+	padding: 5px 0;
+}
+
+.vm .note{
+    color: #444444;
+    font-family: 'Merriweather Sans';
+    font-size: 17px;
+    font-style: italic;
+}
+
+.vm th{
+	color: #999999;
+	font-family: 'Merriweather Sans';
+    font-size: 17px;
+    font-style: italic;
+}
+
+.dollar-sign{
+    color: #999999;
+    font-family: 'Merriweather Sans';
+    font-size: 17px;
+    font-style: italic;
+}
+
+.vm .year{
+    color: #444444;
+    font-family: 'Merriweather Sans';
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.year-input-table tr td, .year-input-table th{
+	padding: 5px 0px;
+	text-align: center
+}

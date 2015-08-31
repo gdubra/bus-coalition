@@ -43,7 +43,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [BusCoalitionWebBundle]
+    bundles:        [BusCoalitionWebBundle,BusCoalitionApiBundle]
     filters:
         cssrewrite: ~
 
@@ -97,3 +97,9 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "%wkhtmltopdf_bin%"
+        options:    []

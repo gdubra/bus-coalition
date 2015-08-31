@@ -1,5 +1,6 @@
 myAppControllers.controller('vehicleCtrl',['$scope','$modalInstance','selectedVehicle',function($scope,$modalInstance,selectedVehicle) {
     $scope.selectedVehicle = selectedVehicle;
+    $scope.showErrors = false;
     
     $scope.actualYear = function(){
         return new Date().getFullYear();
@@ -10,6 +11,10 @@ myAppControllers.controller('vehicleCtrl',['$scope','$modalInstance','selectedVe
     };
     
     $scope.submit = function () {
-        $modalInstance.close($scope.selectedVehicle);
+        if(!$scope.form.$invalid){
+            $modalInstance.close($scope.selectedVehicle);
+        }else{
+            $scope.showErrors = true;
+        }
     };
 }]);

@@ -1,30 +1,53 @@
+<form name="form" data-ng-submit="submit()" data-role="form" method="post" novalidate>
 <div data-ng-controller="fleetCtrl">
-    <h2>Fleet Cost</h2>
+    <h1 class="text-center">Fleet Cost</h1>
     <div class="row">
-        <p>
-            In this section we'll look at the potential capital needed to replace portions of your fleet as they reach their useful life.  
-        </p>
-        <p>
-            Click Add next to each vehicle that you currently have in your fleet and fill in the form that opens. You can also add additional vehicle types by clicking next to Add Another Vehicle Type
-        </p>
-    </div>
-    <div class="row">
-        <h3>Vehicle Types</h3>
-        <div class="row" data-ng-repeat="vehicle in company.fleet">
-            <div class="col-xs-8">{{vehicle.name}}<span data-ng-show="vehicle.replacements" class="glyphicon glyphicon-ok"></span></div>
-            <div class="col-xs-4"><button type="button" class="btn" data-ng-class="vehicle.replacements? 'btn-default': 'btn-success'" data-ng-click="addEditVehicle(vehicle)">{{fundSource.donations? 'Edit' : 'Add'}}</button></div>
+        <div class="help text-center  mg-top-10">
+            In this section we'll look at the potential capital needed to replace<br/>
+             portions of your fleet as they reach their useful life.  
         </div>
-        <div class="row">
-            <div class="col-xs-8">Add another vehicle type</div>
-            <div class="col-xs-4"><button type="button" class="btn btn-success" data-ng-click="addVehicleType()">Add</button></div>
+        <div class="row mobile-off mg-top-10">
+            <div class="col-xs-12 col-sm-4 col-md-4 help-2 text-center">Choose to ‘Add’ each vehicle that <br/> is currently in your fleet. </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 help-2 text-center">Complete a short form <br/> for each type.</div>
+            <div class="col-xs-12 col-sm-4 col-md-4 help-2 text-center">Add any additional vehicle types<br/> at the end of the list.</div>
+        </div>
+        
+    </div>
+    <div class="row mg-top-15">
+        <span class="center-block section-title-icon"><i class="fa fa-plus yellow-icon"></i></span>
+        <div class="section-title">
+            Add each of the vehicle types in your current fleet:
+        </div>
+        <div class="table-container">
+            <div class="row no-margin table-row" data-ng-repeat="vehicle in company.fleet" data-ng-class="vehicle.replacements? 'row-edit': 'row-add'">
+                <div class="col-xs-1 col-sm-1 col-md-1 text-right fa" data-ng-class="vehicle.replacements?'fa-check-circle':''"></div>
+                <div class="col-xs-6 col-sm-8 col-md-9">{{vehicle.name}}</div>
+                <div class="col-xs-5 col-sm-3 col-md-2 text-center"><button type="button" class="bus-btn" data-ng-class="vehicle.replacements? 'btn-edit': 'btn-add'" data-ng-click="addEditVehicle(vehicle)"><i class="fa" data-ng-class="vehicle.replacements? 'fa-pencil' : 'fa-plus' "></i>{{vehicle.replacements? 'Edit' : 'Add'}}</button></div>
+            </div>
+            <div class="row no-margin table-row">
+                <div class="col-xs-offset-1 col-xs-6 col-sm-8 col-md-9">Add another vehicle type</div>
+                <div class="col-xs-5 col-sm-3 col-md-2 text-center"><button type="button" class="bus-btn btn-add" data-ng-click="addVehicleType()"><i class="fa fa-plus"></i>Add</button></div>
+            </div>
         </div>
     </div>
     <div class="row">
-        <h3>Review your yearly inflation rate:</h3>
-        <div class="col-xs-12">We've gone ahead and entered the estimated yearly inflation rate for your area. Feel free to edit it if needed</div>
-        <div class="col-xs-12 col-sm-10 col-md-6 center-block"><label>Vehicle Cost Year Inflation:</label><input type="text" data-ng-model="company.fleetInflationRate"/>%</div>
+        <span class="center-block section-title-icon"><i class="fa fa-pencil yellow-icon"></i></span>
+        <div class="section-title col-xs-12">Review your yearly inflation rate:</div>
+        <div class="col-xs-12 mg-top-5 help">We've gone ahead and entered the estimated yearly inflation rate for your area. Feel free to edit it if needed</div>
+        <div class="col-xs-8 col-sm-7 col-md-4 center-block">
+            <div class="row mg-top-10">
+                <span class="input-label col-xs-7 col-md-8">Vehicle Cost Year Inflation:</span>
+                <span class="col-xs-4 col-md-3" data-ng-class="(form.inflation_rate.$error | keylength) > 0 ? 'has-error':''"><input class="bus-input" type="text" name="inflation_rate" data-ng-model="company.fleetInflationRate" data-ng-pattern="/^[0-9]*$/" max="100" min="0" required/></span>
+                <span class="percentage col-xs-1 col-md-1">%</span>
+            </div>
+            <span data-ng-show="form.inflation_rate.$error.required">Required.</span>
+            <span data-ng-show="form.inflation_rate.$error.pattern">This is not a valid number.</span>
+            <span data-ng-show="form.inflation_rate.$error.min || form.contact_email.$error.max">Rate must be between 0 and 100.</span>
+        </div>
     </div>
-    <button type="button" class="btn btn-default" data-ng-click="back()">Back</button>
-    <button type="button" class="btn btn-default" data-ng-click="next()">Next</button>
+    <div class="btn-group nav-btn-grp mg-top-15 mg-bttm-15">
+        <button type="button" class="bus-btn pull-right btn-nav btn-next" data-ng-disabled="form.$invalid" data-ng-click="next()">Review & Submit <i class="fa fa-angle-right"></i></button>
+        <button type="button" class="bus-btn pull-right btn-nav btn-back" data-ng-click="back()"><i class="fa fa-angle-left"></i> Back to Funding</button>
+    </div>
 </div>
-
+</form>

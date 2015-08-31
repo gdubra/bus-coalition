@@ -1,26 +1,36 @@
 <div data-ng-controller="confirmCtrl">
-    <h1>Review Your Inputs</h1>
-    You're almost done! Take a minute to review your inputs. If you need to edit anything you can use the navigation bar to return to a previous section. When you're ready, submit the form to generate your report!
-    <h2>Funding Data</h2>
-    <h3>Funds Received</h3>
+    <h1 class="text-center">Review Your Inputs</h1>
+    <div class="help">You're almost done! Take a minute to review your inputs. If you need to edit anything you can use the navigation bar to return to a previous section. When you're ready, submit the form to generate your report!</div>
+    <div class="report">
+    <h1>
+            Funds Received
+    </h1>
     <div class="row" data-ng-repeat="fundSource in (company.fundSources|activeFundSource)">
-        <p>{{fundSource.name}}</p>
+        <h2>{{fundSource.name}}</h2>
         <p data-ng-repeat="(year,amount) in fundSource.donations">
-            {{year}}:${{amount}}
+            {{year}} : ${{amount}}
         </p>
     </div>
     
-    <h2>Fleet Data</h2>
+    <h1 class="report ">Fleet Data</h1>
     <div class="row" data-ng-repeat="vehicle in (company.fleet|activeFleet)">
-        <p>{{vehicle.name}}</p>
-        <p><label>Current value: </label>${{vehicle.price}}</p>
-        <p><label>Number in fleet: </label>{{vehicle.amount}}</p>
-        <p><label>Reaching useful life:</label></p>
-        <p data-ng-repeat="(year,amount) in vehicle.replacements">
-            {{year}}:{{amount}}
-        </p>
+        <h2>{{vehicle.name}}</h2>
+        <p><label>Current value: </label> ${{vehicle.price}}</p>
+        <p><label>Number in fleet: </label> {{vehicle.amount}}</p>
+        <p><label>Reaching useful life</label></p>
+        <div class="col-xs-12"> 
+            <p data-ng-repeat="(year,amount) in vehicle.replacements">
+                {{year}} : {{amount}}
+            </p>
+        </div>
     </div>
-    <button type="button" class="btn btn-default" data-ng-click="back()">Back</button>
-    <button type="button" class="btn btn-default" data-ng-click="next()">Next</button>
+    </div>
+    <div class="btn-group nav-btn-grp mg-top-15 mg-bttm-15" data-ng-hide="generating_reports">
+        <button type="button" class="bus-btn pull-right btn-nav btn-next" data-ng-click="next()">Confirm & Download <i class="fa fa-angle-right"></i></button>
+        <button type="button" class="bus-btn pull-right btn-nav btn-back" data-ng-click="back()"><i class="fa fa-angle-left"></i> Back to Fleet Costs</button>
+    </div>
+    <div class="btn-group nav-btn-grp mg-top-15 mg-bttm-15" data-ng-show="generating_reports">
+        <button type="button" class="bus-btn pull-right btn-nav btn-next" >Generating Reports <i class="fa fa-spin fa-cog"></i></button>
+    </div>
 </div>
 

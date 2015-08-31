@@ -25,18 +25,11 @@ buscoalitionfilters.filter('vehicleLifetime',function(){
 
 buscoalitionfilters.filter('activeFundSource',function(){
     return function(fundSources){
-        var formulaFundSources = fundSources.formula;
-        var discretionaryFundSources = fundSources.discretionary;
-        var activeFundSources = [];
-        for (var i = 0; i < formulaFundSources.length; i++) {
-            if(angular.isDefined(formulaFundSources[i].donations)){
-                activeFundSources.push(formulaFundSources[i]);
-            }
-        }
         
-        for (var i = 0; i < discretionaryFundSources.length; i++) {
-            if(angular.isDefined(discretionaryFundSources[i].donations)){
-                activeFundSources.push(discretionaryFundSources[i]);
+        var activeFundSources = [];
+        for (var i = 0; i < fundSources.length; i++) {
+            if(angular.isDefined(fundSources[i].donations)){
+                activeFundSources.push(fundSources[i]);
             }
         }
         
@@ -56,3 +49,25 @@ buscoalitionfilters.filter('activeFleet',function(){
         return activeVehicles;
     };
 });
+
+buscoalitionfilters.filter('sourceType',function(){
+    return function(fundSources,type){
+        var fundSourcesType = [];
+        for (var i = 0; i < fundSources.length; i++) {
+            if(fundSources[i].type==type){
+                fundSourcesType.push(fundSources[i]);
+            }
+        }
+        
+        return fundSourcesType;
+    };
+});
+
+buscoalitionfilters.filter('keylength', function(){
+    return function(input){
+      if(!angular.isObject(input)){
+        throw Error("Usage of non-objects with keylength filter!!");
+      }
+      return Object.keys(input).length;
+    }
+  });

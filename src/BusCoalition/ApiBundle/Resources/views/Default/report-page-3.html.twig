@@ -1,0 +1,79 @@
+{% extends 'BusCoalitionApiBundle:Default:report-page.html.twig' %}
+{% block body %}
+<script type="text/javascript">
+    var chart3Data = JSON.parse('{{ chart3|json_encode|raw}}');
+    $(function () {
+        renderChart3('#chart3',chart3Data);
+    });
+    
+
+    
+    function renderChart3(id,chartdata){
+        $(id).highcharts({
+            chart: {
+                type: 'column'
+            },
+            exporting: { enabled: false },
+            title:{text:''},
+            xAxis: {
+                categories: chartdata.categories,
+                crosshair: false
+            },
+            yAxis:{
+                min:0
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 1,
+                    stacking: 'normal'
+                },
+                animation: false
+            },
+            series: chartdata.series
+        });
+    }
+</script>
+
+<div class="row padding">
+    <div class="section-title col-xs-12">
+        <div class="yellow-icon-container"><span class="section-title-yellow-icon"><i class="fa fa-bank"></i></span></div>
+        Federal Funding Overview
+    </div>
+</div>
+<div class="row padding">
+    <div class="comparision-section-text">
+        <p>
+            Unfortunately the other federal programs, whether in MAP-21 or in the Senate’s DRIVE act, do not make up for this cut in bus funding. This chart shows the total amount of federal funding our agency has received on an annual basis under SAFETEA-LU, MAP-21, and potentially in the DRIVE Act.  
+        </p>
+    </div>
+</div>
+<div class="row padding">
+    <div id="chart3" style="margin: 0 auto"></div>
+</div>
+<div class="row padding">
+    <div class="section-title col-xs-12">
+        <div class="yellow-icon-container"><span class="section-title-yellow-icon"><i class="fa fa-users"></i></span></div>
+        Conclusion
+    </div>
+</div>
+<div class="row padding">
+    <div class="comparision-section-text">
+        <p>
+            As you can see, current federal programs are having a noticeable impact on {{data.basic_info.name}}, and the story is the same for many bus transit agencies across the nation. The lack of adequate federal dedicated bus capital funds is hindering the industry’s ability to replace buses that have reached their FTA determined useful life. With older buses on America’s roads, more route disruptions are possible due to potential breakdowns, cuts, and other conditions; routes riders use to access life necessities such as getting to work, medical appointments, grocery stores, etc. Continuing this funding trend will only accelerate bus transit industry problems if it isn’t dealt with quickly.
+        </p>
+        <p>
+            As the United States Congress continues to work on a long term surface transportation reauthorization, it is detrimental the industry sees funding levels exceeding or meeting pre-MAP-21 levels in the first years of the new bill.
+        </p>
+        <p>
+            Assumptions - Fleet data calculations for the cost of replacing vehicles reaching their FTA determined useful life are based off a {{data.fleetInflationRate}} inflation rate for this report.
+        </p>
+        <p>
+            Funding projections are based off a calculated inflation rate of {{data.fundingInflationRate}} based off historical MAP-21 program levels.
+        </p>
+    </div>
+    
+</div>
+
+
+{% endblock %}

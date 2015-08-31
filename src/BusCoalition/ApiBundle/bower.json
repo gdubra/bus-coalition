@@ -1,0 +1,11 @@
+{
+  "name": "BusCoalitionApiBundle",
+  "version": "0.0.0",
+  "authors": [
+    "gaston dubra <gaston.dubra@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

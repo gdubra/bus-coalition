@@ -1,4 +1,4 @@
-myAppControllers.controller('fundingCtrl',['$scope','$state','$modal','$ajaxHelper',function($scope,$state,$modal,$ajaxHelper) {
+myAppControllers.controller('fundingCtrl',['$scope','$state','$modal','$ajaxHelper','$uiHelper',function($scope,$state,$modal,$ajaxHelper,$uiHelper) {
     $scope.showErrors=false;
     $scope.company = sessionStorage.getObject('company');
     
@@ -14,6 +14,13 @@ myAppControllers.controller('fundingCtrl',['$scope','$state','$modal','$ajaxHelp
     }
     
     $scope.next = function(){
+        for(var i=0; i<$scope.company.fundSources.length;i++){
+            if($scope.company.fundSources[i].required && !$scope.company.fundSources[i].donations){
+                $uiHelper.error_alert('Please complete all required data marked with <i class="fa fa-warning"></i>');
+                return;
+            }
+        }
+        
         sessionStorage.setObject('company',$scope.company);
         $state.go('step3');
         $scope.showErrors=true;
@@ -38,6 +45,7 @@ myAppControllers.controller('fundingCtrl',['$scope','$state','$modal','$ajaxHelp
         
         modalInstance.result.then(function (donations) {
             fundSource.donations= donations;
+            sessionStorage.setObject('company',$scope.company);
           });
     };
     

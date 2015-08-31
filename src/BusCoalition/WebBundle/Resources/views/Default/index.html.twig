@@ -8,6 +8,7 @@
         {% block javascripts %}
             {% javascripts 
                 '@BusCoalitionWebBundle/Resources/public/vendor/angular/angular.js'
+                '@BusCoalitionWebBundle/Resources/public/vendor/angular-sanitize/angular-sanitize.js'
                 '@BusCoalitionWebBundle/Resources/public/vendor/angular-bootstrap/ui-bootstrap.js'
                 '@BusCoalitionWebBundle/Resources/public/vendor/angular-bootstrap/ui-bootstrap-tpls.js'
                 '@BusCoalitionWebBundle/Resources/public/vendor/angular-ui-router/release/angular-ui-router.js'
@@ -21,29 +22,37 @@
                 <script src="{{asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700italic,400italic,700|Merriweather:400,400italic,700,700italic|Montserrat:400,700" rel="stylesheet" type="text/css">
         {% block stylesheets %}
             {% stylesheets 
-                '@BusCoalitionWebBundle/Resources/public/css/*.css'
                 '@BusCoalitionWebBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.css'
                 '@BusCoalitionWebBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap-theme.css'
+                '@BusCoalitionWebBundle/Resources/public/css/*.css'
                 filter='cssrewrite'  
             %}
                 <link rel="stylesheet" href="{{asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
-        
     </head>
 
-    <body data-role="document">
+    <body>
         <div  data-ng-controller="AlertsCtrl" ng-cloak >
             <alert data-ng-repeat="alert in alerts" class="global-alert" type="{% verbatim %}{{alert.type}}{% endverbatim %}" close="close($index)">
                 <span ng-if="alert.type=='danger'" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span ng-if="alert.type=='warning'" class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
                 <span ng-if="alert.type=='success'" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                {% verbatim %}{{alert.msg}}{% endverbatim %}
+                <span ng-bind-html="alert.msg"></span>
             </alert>
         </div>
-        <main class="container" data-ui-view="container">
+        <ul  data-ng-controller="NavbarCtrl" class="my-breadcrumb col-xs-12 no-padding">
+            <li class="no-padding col-xs-12 col-md-4"><a class="col-xs-12 logo"><img src="/bundles/buscoalitionweb/images/logo.png"/></a></li>
+            <li class="no-padding col-xs-3 col-md-2"><a class="col-xs-12" data-ng-class="activeStep == '#/basic-info'?'active':''" href="#">Basic Info</a></li>
+            <li class="no-padding col-xs-3 col-md-2"><a class="col-xs-12" data-ng-class="activeStep == '#/funding'?'active':''" href="#/funding">Funding</a></li>
+            <li class="no-padding col-xs-3 col-md-2"><a class="col-xs-12" data-ng-class="activeStep == '#/fleet'?'active':''" href="#/fleet">Fleet Costs</a></li>
+            <li class="no-padding col-xs-3 col-md-2"><a class="col-xs-12" data-ng-class="activeStep == '#/confirm'?'active':''">Submit</a></li>
+        </ul>
+        <main data-role="document" class="container" class="col-xs-12" data-ui-view="container">
         </main>
     </body>
 </html>

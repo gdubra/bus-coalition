@@ -8,7 +8,7 @@ myAppControllers.controller('confirmCtrl',['$scope','$state',function($scope,$st
     }
     
     $scope.next = function(){
-        $state.go('report');
+        $state.go('downloads');
     };
     
     $scope.back = function(){

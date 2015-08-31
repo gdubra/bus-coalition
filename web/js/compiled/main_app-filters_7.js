@@ -56,3 +56,16 @@ buscoalitionfilters.filter('activeFleet',function(){
         return activeVehicles;
     };
 });
+
+buscoalitionfilters.filter('sourceType',function(){
+    return function(fundSources,type){
+        var fundSourcesType = [];
+        for (var i = 0; i < fundSources.length; i++) {
+            if(fundSources[i].type==type){
+                fundSourcesType.push(fundSources[i]);
+            }
+        }
+        
+        return fundSourcesType;
+    };
+});

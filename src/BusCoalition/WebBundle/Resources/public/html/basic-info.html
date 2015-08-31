@@ -1,35 +1,51 @@
 <div data-ng-controller="basicInfoCtrl">
-<form name="form" novalidate>
-<div class="form-group" data-ng-class="showErrors && form.name_of_system.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.name_of_system" name="name_of_system" placeholder="Name of System" required/>
-    <span data-ng-show="showErrors && form.name_of_system.$error.required">Required.</span>
+<h1 class="text-center">Basic Info</h1>
+<p class="help text-center"> Welcome to the Bus Coalition funding projection tool. This tool will provide you with a report that demonstrates the need for legislation to support bus funding.</p>
+<p class="help-2 text-center">To fill out the form, you'll need to have at hand information on your sources and amounts of funding from past years, and information on the vehicles that make up your fleet. </p>
+<p class="help-2 text-center">After you fill out the 4 step form, a report will be generated with charts and text to summarize your projections.</p>
+<p class="help-2 text-center">If you have any questions feel free to contact us at <a href="mailto:info@thebuscoalition.com">info@thebuscoalition.com</a></p> 
+<form name="form" class="form-horizontal col-xs-12 col-sm-8 col-md-6 center-block" novalidate>
+<div class="form-group" data-ng-class="showErrors && (form.contact_name.$error | keylength) > 0 ? 'has-error':''">
+    <label class="input-label col-xs-5 col-sm-4 text-right">Contact Name</label>
+    <div class="col-xs-7 col-sm-8">
+        <input class="form-control bus-input" data-ng-model="company.basic_info.contact_name" name="contact_name" placeholder="" required />
+        <span data-ng-show="showErrors && form.contact_name.$error.required">Required.</span>
+    </div>
 </div>
-<div class="form-group" data-ng-class="showErrors && form.city.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.city" name="city" placeholder="City" required/>
-    <span ng-show="showErrors && form.city.$error.required">Required.</span>
+<div class="form-group" data-ng-class="showErrors && (form.contact_email.$error | keylength) > 0 ? 'has-error':''">
+    <label class="input-label col-xs-5 col-sm-4 text-right">Contact Email</label>
+    <div class="col-xs-7 col-sm-8">
+    <input type="email" class="form-control bus-input" data-ng-model="company.basic_info.contact_email" name="contact_email" placeholder="" required />
+    <span data-ng-show="showErrors && form.contact_email.$error.required">Required.</span>
+    <span data-ng-show="showErrors && form.contact_email.$error.email">This is not a valid email.</span>
+    </div>
 </div>
-<div class="form-group" data-ng-class="showErrors && form.state.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.state" name="state" placeholder="State" required/>
-    <span ng-show="showErrors && form.state.$error.required">Required.</span>
+<div class="form-group" data-ng-class="showErrors && (form.contact_phone.$error | keylength) > 0 ? 'has-error':''">
+    <label class="input-label col-xs-5 col-sm-4 text-right">Contact Phone</label>
+    <div class="col-xs-7 col-sm-8">
+    <input class="form-control bus-input" data-ng-model="company.basic_info.contact_phone" name="contact_phone" placeholder="" data-ng-pattern="/^[0-9]*$/" required />
+    <span data-ng-show="showErrors && form.contact_phone.$error.pattern">Not a valid number!</span>
+    <span data-ng-show="showErrors && form.contact_phone.$error.required">Required.</span>
+    </div>
 </div>
-<div class="form-group" data-ng-class="showErrors && form.zip.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.zip" name="zip" placeholder="Zip" required/>
-    <span ng-show="showErrors && form.zip.$error.required">Required.</span>
+<div class="form-group" data-ng-class="showErrors && (form.name.$error | keylength) > 0 ? 'has-error':''">
+    <label class="input-label col-xs-5 col-sm-4 text-right">Bus System Name</label>
+    <div class="col-xs-7 col-sm-8">
+    <input class="form-control bus-input" data-ng-model="company.basic_info.name" name="name" placeholder="" required/>
+    <span data-ng-show="showErrors && form.name.$error.required">Required.</span>
+    </div>
 </div>
-<div class="form-group" data-ng-class="showErrors && form.contact_name.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.contact_name" name="contact_name" placeholder="Contact Name" required />
-    <span ng-show="showErrors && form.contact_name.$error.required">Required.</span>
+<div class="form-group" data-ng-class="showErrors && (form.address.$error | keylength) > 0 ? 'has-error':''">
+    <label class="input-label col-xs-5 col-sm-4 text-right">Bus System Address</label>
+    <div class="col-xs-7 col-sm-8">
+    <input class="form-control bus-input" data-ng-model="company.basic_info.address" name="address" placeholder="" required/>
+    <span data-ng-show="showErrors && form.address.$error.required">Required.</span>
+    </div>
 </div>
-<div class="form-group" data-ng-class="showErrors && form.contact_email.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.contact_email" name="contact_email" placeholder="Contact Email" required />
-    <span ng-show="showErrors && form.contact_email.$error.required">Required.</span>
-</div>
-<div class="form-group" data-ng-class="showErrors && form.contact_phone.$error.required ? 'has-error':''">
-    <input class="form-control" data-ng-model="company.basic_info.contact_phone" name="contact_phone" placeholder="Contact Phone" required />
-    <span ng-show="showErrors && form.contact_phone.$error.required">Required.</span>
-</div>
-<div class="btn-group" data-role="group">
-    <button type="button" class="btn btn-primary" data-ng-click="next()">Next</button>
-</div>
+{{form.contact_email.$error.keys|json}}
 </form>
+<div class="btn-group nav-btn-grp mg-top-15 mg-bttm-15">
+     <button type="button" class="bus-btn pull-right btn-nav btn-next" data-ng-click="next()">Continue to Funding <i class="fa fa-angle-right"></i></button>
+</div>
+
 </div>

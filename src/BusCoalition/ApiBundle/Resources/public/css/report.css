@@ -1,0 +1,230 @@
+html,body{
+}
+
+.page{
+	width: 1090px;
+    height: 1410px;
+    page-break-after: always;
+}
+.header{
+    padding: 38px 38px 12px 38px;
+    -webkit-box-shadow: -1px 2px 0px 0px rgba(0, 0, 0, 0.11);
+    -moz-box-shadow:    -1px 2px 0px 0px rgba(0, 0, 0, 0.11);
+    box-shadow:         -1px 2px 0px 0px rgba(0, 0, 0, 0.11);
+    
+}
+
+.header .logo{
+	width: 156px;
+	height: 76px;
+}
+
+.header .cname{
+	font-family: 'Merriweather';
+	font-weight: bold;
+	color: #3b3b63;
+	font-size: 15px;
+	text-transform: capitalize; 
+}
+
+.header .caddress{
+    text-transform: capitalize;
+}
+
+.header .caddress, .header .cemail{
+    font-family: 'Merriweather';
+    /*font-style: italic;*/
+    color: #666;
+    font-size: 15px;
+}
+
+.page-content{
+	min-height: 1175px;
+}
+
+.padding{
+	padding: 0 38px;
+}
+
+.intro{
+	background: #3b3b63;
+	height: 49px;
+	line-height: 49px;
+	border-bottom: 1px solid #d8d8e0;
+}
+
+.intro .title{
+	font-family:'Montserrat';
+	font-size: 19px;
+	color: #fff;
+}
+
+.intro-paragraph{
+	font-family: 'Merriweather';
+	font-weight: normal;
+	font-size:15px;
+	font-type:normal;
+	color:#222;
+	background: #f1f1f1;
+	padding: 38px 38px 38px 38px;
+	line-height:26px;
+}
+
+.section-title{
+    background:#606066;
+    font-family: 'Montserrat';
+    font-size: 17px;
+    font-type:normal;
+    color: #fff;
+    line-height:23px;
+    height: 30px;
+    padding:0;
+    margin-bottom:25px;
+    margin-top: 40px;
+}
+
+.yellow-icon-container{
+	display: inline-block;
+    margin-left: -8px;
+}
+
+.section-title-yellow-icon{
+    color: #fff;
+    font-size: 23px;
+    border-radius: 50%;
+    padding: 10px;
+    background: #dea918
+}
+
+.comparision-section-text{
+    font-family: 'Merriweather';
+    font-weight: normal;
+    font-style: normal;
+    font-size:15px;
+    color:#222;
+    line-height: 26px;
+}
+
+.comparision-section-text > p{
+	margin-bottom: 20px;
+}
+
+.footer{
+	padding-top: 10px;
+	padding-bottom:38px;
+	border-top: 1px solid #c2c2c2;
+	color: #555;
+
+}
+
+.footer .note{
+	font-family:'Merriweather';
+	font-weight: normal;
+	font-size: 15px;
+	/*font-style: italic;*/
+	line-height: 30px;
+}
+
+.footer .contact{
+    font-family:'Merriweather';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 30px;
+    padding:0 5px;
+}
+
+.footer .contact:first-child{
+    padding-left: 0;
+}
+
+.footer .contact.point{
+	display: inline-block;
+    line-height: 18px;
+    vertical-align: top;
+}
+
+.footer .cname{
+	text-transform: uppercase;
+}
+
+.pdf-pagination{
+	color:#222;
+	font-family:'Merriweather';
+	font-size: 15px;
+	/*font-style: italic;*/
+	font-weight: normal;
+	text-align: center;
+	line-height: 30px;
+}
+
+.row{
+	margin: 0;
+}
+
+.no-padding{
+	padding: 0;
+}
+
+.old-sec{
+	padding:20px;
+	font-family:'Montserrat';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 13px;
+    color: #545454;
+	background: #c4c4c4;
+	border-right: 2px solid #fff;
+}
+
+.new-sec{
+	padding:20px;
+	font-family:'Montserrat';
+	font-weight: normal;
+	font-style: normal;
+    font-size: 13px;
+    color: #545454;
+	background: #e8c35d;
+	border-left: 2px solid #fff;
+}
+
+.old-new{
+	color: #929292;
+}
+
+.center-block {
+    float: none;
+}
+
+.vs-round-icon{
+	background: #fff none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #444;
+    font-family: "Montserrat";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    padding: 10px;
+    margin-bottom: -22px;
+}
+
+
+.vs-icon-container{
+    z-index: 99;
+}
+
+
+.chart1 .vs-icon-container{
+    margin-top: -60px
+}
+
+.chart2 .vs-icon-container{
+    margin-top: -50px
+}
+
+.chart-title{
+    z-index: 100;
+
+}
+
+

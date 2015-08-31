@@ -1,0 +1,87 @@
+{% extends 'BusCoalitionApiBundle:Default:report-page.html.twig' %}
+{% block body %}
+<script type="text/javascript">
+    var chart1Data = JSON.parse('{{ chart1|json_encode|raw}}');
+    $(function () {
+        renderChart1('#chart1',chart1Data);
+    });
+    
+    function renderChart1(id,chartdata){
+        $(id).highcharts({
+            colors:['#c4c4c4','#e8c35d'],
+            legend: {enabled:false},
+            chart: {
+                type: 'column'
+            },
+            exporting: { enabled: false },
+            title:{text:''},
+            xAxis: {
+                categories: chartdata.categories,
+                crosshair: false,
+                title:''
+            },
+            yAxis:{
+                min:0,
+                title:''
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 1
+                },
+                animation: false
+            },
+            series: chartdata.series,
+        });
+    }
+</script>
+
+<div class="row intro padding">
+    <div class="title">The Federal Funding Shortfall for {{data.basic_info.name}}</div>
+</div>
+<div class="row">
+    <div class="col-xs-12 intro-paragraph padding">
+        In 2013 the current surface transportation legislation—MAP-21—went into effect with negative repercussions for transit agencies across the nation. Unfortunately for bus transit systems, MAP-21 contained a significant reduction in funding for agencies such as ours, as compared to the prior authorization, SAFETEA-LU. Under MAP-21 the bus and bus facilities program was reduced to $422 million nationwide, as compared to $984 million under  SAFETEA-LU. Bus and bus facilities funding is now in Section 5339 and is a formula-based program, rather than a competitive one. Formerly that funding, at more than double the current amount, was in Section 5309, which has now been eliminated.    
+    </div>
+</div>
+
+<div class="row padding">
+    <div class="section-title col-xs-12">
+        <div class="yellow-icon-container"><span class="section-title-yellow-icon"><i class="fa fa-bar-chart"></i></span></div>
+        Comparision of Sec.5309 and Sec.5339 Bus & Bus Facilities Accounts
+    </div>
+</div>
+
+<div class="row padding">
+    <div class="comparision-section-text col-xs-5 no-padding">
+        <p class="no-padding">
+            Our agency has been impacted by this cut in federal funding. Here you can see how this monumental funding cut has directly lowered the amount of funding our agency receives for bus and related purchases, by looking at the amounts we received under prior legislation. In 2015, our agency received only $25M from the $427.8M Sec.5339 formula program.
+        </p>
+        <p class="no-padding">
+            In the bus transit industry, a steady flow of funds under a formula program doesn’t necessarily help transit systems; especially, when the formula program is funded at low levels. Fleets have a tendency to reach FTA useful life status in batches, and a competitive grant allowed agencies to replace that portion of a fleet more effectively. This is the challenge we trying to address as congress develops a new surface transportation bill.
+        </p> 
+    </div>
+    <div class="col-xs-6 col-xs-offset-1 no-padding">
+         <div class="row">
+             <div class="col-xs-12 text-center chart1 chart-title">
+                <div class="col-xs-9 labels-container no-padding center-block">
+                    <div class="col-xs-6 no-padding old-sec text-center">
+                        Sec. 5309 Bus <br/>
+                        &amp; Bus Facilities <br/> 
+                        <span class="old-new">- Old -</span> 
+                    </div>
+                    <div class="col-xs-6 no-padding new-sec text-center">
+                        Sec. 5339 Bus <br/>
+                        &amp; Bus Facilities <br/>
+                        <span class="old-new">- New -</span>
+                    </div>
+                </div>
+                <div class="vs-icon-container col-xs-12"><span class="vs-round-icon">vs</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="chart1" style="margin: 0 auto"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
